@@ -16,6 +16,9 @@ pub fn run_yarn_commands(yarn: &str) {
     }
 //删除当前目录下的.npmrc
     let _ = fs::remove_file(".npmrc");
+
+    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", "npm.cmd"));
+    let _ = utils::run_command(format!("{} config set strict-ssl false", "npm.cmd"));
     //使用系统命令，检查yarn安装，如果没有安装则安装
     let _ = utils::run_command("yarn -v || npm install -g yarn".to_string());
     // println!("开始移除node_modules");
@@ -24,14 +27,16 @@ pub fn run_yarn_commands(yarn: &str) {
     // }
     // println!("移除完毕");
     // let yarn = "npm";
-    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", yarn));
-    let _ = utils::run_command(format!("{} config set strict-ssl false", yarn));
+
     // 执行系统命令yarn cache clean
     // let _ = utils::run_command(format!("{} cache clean", yarn));
     // let _ = utils::run_command(format!("{} set version stable", yarn));
-    println!("开始安装依赖");
 
-    let _ = utils::run_command(format!("{} install", yarn));
+    if !fs::metadata("node_modules").is_ok() {
+        println!("当前目录下不存在node_modules文件夹");
+        println!("开始安装依赖");
+        let _ = utils::run_command(format!("{} install", yarn));
+    }
     println!("开始启动");
     let _ = utils::run_command(format!("{} dev", yarn));
     // 将 `yarn` 转换为有 'static 生命周期的字符串
