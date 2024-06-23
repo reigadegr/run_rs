@@ -2,7 +2,7 @@ mod utils;
 mod yarn_start;
 mod pnpm_start;
 
-use std::{fs, io, thread};
+use std::{fs, io};
 
 fn main() -> io::Result<()> {
     println!("欢迎使用本自动化脚本，可以运行vue和springboot程序");

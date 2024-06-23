@@ -17,12 +17,12 @@ jobs:
       - name: Setup rust toolchains
         run: |
           # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly --profile complete -y
-          rustup default nightly
-          # rustup component add rust-src
+          # rustup default nightly
+          rustup default stable
       - name: Build
         run: |
-          cargo +nightly build --release
-          # cargo build --release
+          # cargo +nightly build --release
+          cargo build --release
       - name: Prepare artifacts
         run: |
           mkdir -p ./output
