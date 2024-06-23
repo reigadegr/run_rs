@@ -18,25 +18,18 @@ jobs:
         run: |
           # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly --profile complete -y
           rustup default nightly
-          rustup component add rust-src
+          # rustup component add rust-src
       - name: Build
         run: |
-          # cargo +nightly build --release
-          cargo build --release
+          cargo +nightly build --release
+          # cargo build --release
       - name: Prepare artifacts
         run: |
           mkdir -p ./output
-          copy ./target/release/run_rs* ./output/run_rs.exe
+          copy ./target/release/run_rs.exe ./output/run_rs.exe
       - name: Pack artifacts
         uses: actions/upload-artifact@v4
         with:
           name: run_rs
           compression-level: 9
           path: output
-      - name: Pack artifacts2
-        uses: actions/upload-artifact@v4
-        with:
-          name: run_rs2
-          compression-level: 9
-          path: target/release
-      
