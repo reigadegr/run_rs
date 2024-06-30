@@ -35,6 +35,8 @@ pub fn run_yarn_commands(yarn: &str) {
     if !fs::metadata("node_modules").is_ok() {
         println!("当前目录下不存在node_modules文件夹");
         println!("开始安装依赖");
+        let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", yarn));
+        let _ = utils::run_command(format!("{} config set strict-ssl false", yarn));
         let _ = utils::run_command(format!("{} install", yarn));
     }
     println!("开始启动");
