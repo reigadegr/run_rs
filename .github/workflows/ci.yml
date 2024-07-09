@@ -1,11 +1,15 @@
 name: ci-build
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: false
-        default: 'warning'
+#  workflow_dispatch:
+#    inputs:
+#      logLevel:
+#        description: 'Log level'
+#        required: false
+#        default: 'warning'
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always

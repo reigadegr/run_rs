@@ -8,13 +8,13 @@ pub fn run_yarn_commands(yarn: &str) {
         return;
     }
     //检查package.json内是否含有pnpm字符串，如果有，则使用变量遮蔽的方式把yarn替换为pnpm
-    let package_json = fs::read_to_string("package.json").unwrap();
-    if package_json.contains("only-allow pnpm") {
-        println!("检测到package.json内含有only-allow pnpm字符串，将使用pnpm进行安装");
-        run_pnpm_commands("pnpm.cmd");
-        return;
-    }
-//删除当前目录下的.npmrc
+    // let package_json = fs::read_to_string("package.json").unwrap();
+    // if package_json.contains("only-allow pnpm") {
+    //     println!("检测到package.json内含有only-allow pnpm字符串，将使用pnpm进行安装");
+    run_pnpm_commands("pnpm.cmd");
+    //     return;
+    // }
+    //删除当前目录下的.npmrc
     let _ = fs::remove_file(".npmrc");
 
     let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", "npm.cmd"));
