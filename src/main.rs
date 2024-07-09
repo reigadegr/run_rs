@@ -34,13 +34,11 @@ fn run_spring_boot() {
     let _ = fs::remove_dir_all("target");
     println!("移除完毕");
 
-    if let Err(e) = utils::run_command("mvn clean install spring-boot:run".to_string()) {
-        println!("Failed to run command: {}", e);
-    }
+    let _ = utils::run_command("mvn clean install spring-boot:run".to_string());
 }
 
 fn repalce_str(contents: &str, target: &str, replacement: &str) -> io::Result<()> {
-// 读取package.json文件
+    // 读取package.json文件
     let contents1 = fs::read_to_string(contents)?;
 
 
