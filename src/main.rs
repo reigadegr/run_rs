@@ -1,7 +1,7 @@
 mod utils;
 mod yarn_start;
 mod pnpm_start;
-
+mod reflex_start;
 use std::{fs, io};
 
 fn main() -> io::Result<()> {
@@ -21,6 +21,7 @@ fn main() -> io::Result<()> {
     run_spring_boot();
     println!("finished");
     let _ = utils::run_command("cmd".to_string());
+    reflex_start::reflex_start("py12");
     Ok(())
 }
 
