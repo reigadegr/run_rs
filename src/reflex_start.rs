@@ -6,5 +6,5 @@ pub fn reflex_start(env_name: &str) {
         println!("当前目录下不存在package.json文件");
         return;
     }
-    let _ = utils::run_command(format!("conda acivate {} && reflex run", env_name));
+    let _ = utils::run_command(format!("conda activate {} && reflex run", env_name));
 }

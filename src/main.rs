@@ -2,6 +2,7 @@ mod utils;
 mod yarn_start;
 mod pnpm_start;
 mod reflex_start;
+mod mdbook_start;
 use std::{fs, io};
 
 fn main() -> io::Result<()> {
@@ -20,6 +21,7 @@ fn main() -> io::Result<()> {
 
     run_spring_boot();
     reflex_start::reflex_start("py12");
+    mdbook_start::mdbook_start();
     println!("finished");
     let _ = utils::run_command("cmd".to_string());
     Ok(())
