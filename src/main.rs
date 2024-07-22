@@ -19,9 +19,9 @@ fn main() -> io::Result<()> {
     yarn_start::run_yarn_commands(yarn);
 
     run_spring_boot();
+    reflex_start::reflex_start("py12");
     println!("finished");
     let _ = utils::run_command("cmd".to_string());
-    reflex_start::reflex_start("py12");
     Ok(())
 }
 
