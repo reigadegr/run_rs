@@ -7,7 +7,10 @@ pub fn reflex_start(env_name: &str) {
         return;
     }
     println!("reflex项目，开始使用npm安装依赖");
+    if !fs::metadata(".web").is_ok() {
+        let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
+    }
+
     let _ = utils::run_command(format!("cd .web && {} install && cd ..", "npm.cmd"));
-    println!("安装完毕");
     let _ = utils::run_command(format!("conda activate {} && reflex run", env_name));
 }
