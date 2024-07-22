@@ -20,7 +20,7 @@ fn main() -> io::Result<()> {
 
     run_spring_boot();
     println!("finished");
-    let _ = utils::run_command("pause".to_string());
+    let _ = utils::run_command("cmd".to_string());
     Ok(())
 }
 
