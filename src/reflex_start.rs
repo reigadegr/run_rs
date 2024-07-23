@@ -11,6 +11,11 @@ pub fn reflex_start(env_name: &str) {
         let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
     }
 
+    if !fs::metadata(".web/package.json").is_ok() {
+        let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
+    }
+
     let _ = utils::run_command(format!("cd .web && {} install && cd ..", "npm.cmd"));
+    let _ = utils::run_command(format!("cd .web && {} add -d tailwindcss@3.3.2 && cd ..", "npm.cmd"));
     let _ = utils::run_command(format!("conda activate {} && reflex run", env_name));
 }
