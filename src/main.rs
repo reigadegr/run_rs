@@ -20,7 +20,7 @@ fn main() -> io::Result<()> {
     yarn_start::run_yarn_commands(yarn);
 
     run_spring_boot();
-    reflex_start::reflex_start("py12");
+    reflex_start::reflex_start("py11");
     mdbook_start::mdbook_start();
     println!("finished");
     let _ = utils::run_command("cmd".to_string());
