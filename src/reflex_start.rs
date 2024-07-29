@@ -6,7 +6,7 @@ use crate::{utils};
 fn bun_killer() {
     thread::spawn(move || {
         loop {
-            let _ = Command::new("taskkill")
+            Command::new("taskkill")
                 .arg("/F").arg("/IM").arg("bun.exe")
                 .output().unwrap();
             // sleep 1s
@@ -20,13 +20,15 @@ pub fn reflex_start(env_name: &str) {
         println!("当前目录下不存在rxconfig.py文件");
         return;
     }
+    let _ = utils::run_command("taskkill /F /IM node.exe".to_string());
     println!("reflex项目，开始使用npm安装依赖");
 
-
+    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", "npm.cmd"));
     if !fs::metadata(".web/package.json").is_ok() || !fs::metadata(".web").is_ok() {
         let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
     }
     let _ = utils::run_command(format!("{} config set strict-ssl false", "npm.cmd"));
+    // let _ = utils::run_command("reflex script keep-chakra".to_string());
     bun_killer();
     let _ = utils::run_command(format!("conda activate {} && reflex run --loglevel debug", env_name));
     let _ = utils::run_command("reflex run --loglevel debug".to_string());
