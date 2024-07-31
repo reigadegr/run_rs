@@ -6,6 +6,14 @@ mod mdbook_start;
 use std::{fs, io};
 
 fn main() -> io::Result<()> {
+    //判断如果是windows操作系统
+    if cfg!(windows) {
+        println!("当前操作系统是Windows");
+        let _ = utils::run_command("color 8E".to_string());
+    } else {
+        println!("当前操作系统不是Windows");
+    }
+
     println!("欢迎使用本自动化脚本，可以运行vue和springboot程序");
     println!("作者：github@reigadegr");
     let yarn = "yarn.cmd";
@@ -23,7 +31,7 @@ fn main() -> io::Result<()> {
     reflex_start::reflex_start("py11");
     mdbook_start::mdbook_start();
     println!("finished");
-    let _ = utils::run_command("cmd".to_string());
+    let _ = utils::run_command("powershell".to_string());
     Ok(())
 }
 
