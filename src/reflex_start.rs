@@ -23,7 +23,7 @@ pub fn reflex_start(env_name: &str) {
     let _ = utils::run_command("taskkill /F /IM node.exe".to_string());
     println!("reflex项目，开始使用npm安装依赖");
 
-    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", "npm.cmd"));
+    let _ = utils::run_command(format!("{} config set registry https://registry.npmmirror.com", "npm.cmd"));
     if !fs::metadata(".web/package.json").is_ok() || !fs::metadata(".web").is_ok() {
         let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
     }
