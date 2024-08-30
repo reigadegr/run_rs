@@ -10,12 +10,12 @@ pub fn run_pnpm_commands(yarn: &str) {
         let _ = repalce_str("package.json", "NODE_OPTIONS=--max-old-space-size=4096 vite", "set NODE_OPTIONS=--max-old-space-size=4096 && vite");
         let _ = repalce_str("package.json", "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build", "rimraf dist && set NODE_OPTIONS=--max-old-space-size=8192 && vite build");
     }
-    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", "npm.cmd"));
+    let _ = utils::run_command(format!("{} config set registry https://registry.npmmirror.com", "npm.cmd"));
     let _ = utils::run_command(format!("{} config set strict-ssl false", "npm.cmd"));
     //使用系统命令，检查安装，如果没有安装则安装
     let _ = utils::run_command((yarn.to_owned() + " -v || npm install -g " + yarn).to_string());
 
-    let _ = utils::run_command(format!("{} config set registry https://registry.npm.taobao.org", yarn));
+    let _ = utils::run_command(format!("{} config set registry https://registry.npmmirror.com", yarn));
     let _ = utils::run_command(format!("{} config set strict-ssl false", yarn));
     let _ = utils::run_command(format!("{} install", yarn));
     // let _ = utils::run_command(format!("{} add vue-demi", yarn));
