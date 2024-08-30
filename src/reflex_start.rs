@@ -26,7 +26,7 @@ pub fn reflex_start() {
     let _ = utils::run_command(format!("{} config set registry https://registry.npmmirror.com", "npm.cmd"));
 
     if !fs::metadata(".web/package.json").is_ok() || !fs::metadata(".web").is_ok() {
-        // let _ = utils::run_command(format!("conda activate {} && reflex init", env_name));
+        let _ = utils::run_command("reflex init".to_string());
     }
     let _ = utils::run_command(format!("{} config set strict-ssl false", "npm.cmd"));
     // let _ = utils::run_command("reflex script keep-chakra".to_string());
