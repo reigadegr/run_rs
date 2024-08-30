@@ -28,7 +28,7 @@ fn main() -> io::Result<()> {
     yarn_start::run_yarn_commands(yarn);
 
     run_spring_boot();
-    reflex_start::reflex_start("py11");
+    reflex_start::reflex_start();
     mdbook_start::mdbook_start();
     println!("finished");
     let _ = utils::run_command("powershell".to_string());
